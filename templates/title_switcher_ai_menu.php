@@ -1,6 +1,6 @@
 <?php
 global $wpdb;
-$title_switcher = $wpdb->prefix . "title_switcher";
+$title_switcher_ai = $wpdb->prefix . "title_switcher_ai";
 
 ?>
 
@@ -24,12 +24,12 @@ $title_switcher = $wpdb->prefix . "title_switcher";
             <tbody class="table-group-divider">
                 <tr>
                     <td class="col">Posts</td>
-                    <td class="col"><input class="newTitles" type="text" name="" id="0" value="<?= $wpdb->get_var("SELECT title_tag FROM $title_switcher WHERE page_id = 0"); ?>"></td>
+                    <td class="col"><input class="newTitles" type="text" name="" id="0" value="<?= $wpdb->get_var("SELECT title_tag FROM $title_switcher_ai WHERE page_id = 0"); ?>"></td>
                 </tr>
-                <?php foreach (PUBLISHED_PAGES as $id): ?>
+                <?php foreach (PUBLISHED_PAGES_AI as $id): ?>
                 <tr>
                     <td class="col"><?= get_the_title($id) ?></td>
-                    <td class="col"><input class="newTitles" type="text" name="" id="<?= $id ?>" value="<?= $wpdb->get_var("SELECT title_tag FROM $title_switcher WHERE page_id = $id"); ?>"></td>
+                    <td class="col"><input class="newTitles" type="text" name="" id="<?= $id ?>" value="<?= $wpdb->get_var("SELECT title_tag FROM $title_switcher_ai WHERE page_id = $id"); ?>"></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>

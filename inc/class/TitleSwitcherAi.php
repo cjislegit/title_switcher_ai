@@ -1,6 +1,6 @@
 <?php
 
-class TitleSwitcher
+class TitleSwitcherAI
 {
 
     public function register()
@@ -12,7 +12,7 @@ class TitleSwitcher
     {
         global $wpdb;
 
-        $titleTagTableName = $wpdb->prefix . "title_switcher";
+        $titleTagTableName = $wpdb->prefix . "title_switcher_ai";
 
         $titleTagTable = $wpdb->get_results("SELECT * FROM $titleTagTableName");
 
@@ -38,7 +38,7 @@ class TitleSwitcher
         global $wpdb;
         $pageId = $post->ID;
         $postId =  get_posts("post_type=post&numberposts=1&fields=ids");
-        $table = $wpdb->prefix . "title_switcher";
+        $table = $wpdb->prefix . "title_switcher_ai";
 
         $pageId = $pageId == $postId[0] ? 0 : $pageId;
 
