@@ -23,11 +23,17 @@ class TitleSwitcherEnqueueAi
     public function adminMenu() 
     {
         add_menu_page('Title Switcher AI', "Title Switcher AI", 'manage_options', 'title_switcher_ai_menu', array($this, 'adminPage'), 'dashicons-laptop', 8);
+        add_submenu_page('title_switcher_ai_menu', "Title Generator", 'Title Generator', 'manage_options', 'title_generator', array($this, 'titleGeneratorPage'));
     }
 
     public function adminPage()
     {
         require_once(TITLE_SWITCHER_AI_PATH . 'templates/title_switcher_ai_menu.php');
+    }
+
+    public function titleGeneratorPage()
+    {
+        require_once(TITLE_SWITCHER_AI_PATH . 'templates/title_switcher_ai_generator.php');
     }
 
 }
