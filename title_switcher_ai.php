@@ -68,7 +68,7 @@ use Orhanerday\OpenAi\OpenAi;
 function generate_tag()
 {
 
-    $open_ai_key = getenv('OPENAI_API_KEY');
+    $open_ai_key = '';
     $open_ai = new OpenAi($open_ai_key);
 
     $complete = $open_ai->completion([
@@ -80,8 +80,8 @@ function generate_tag()
         'presence_penalty' => 0.6,
     ]);
 
-    var_dump($complete);
+    echo $complete;
 }
 
-
-
+add_action('wp_ajax_generate_tag', 'generate_tag'); // for logged in users only
+add_action('wp_ajax_nopriv_generate_tag', 'generate_tag'); // for ALL users

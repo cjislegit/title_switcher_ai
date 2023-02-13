@@ -11,7 +11,7 @@ $j(document).ready(function() {
            newTitles.push([element.id, element.value]);
         });
 
-        var data = {
+        let data = {
             'type'     : 'POST',
             'action'   : 'update_table', // the name of your PHP function!
             'function' : newTitles,    // a random value we'd like to pass
@@ -26,18 +26,22 @@ $j(document).ready(function() {
     $j("#submit").click(submit);
 
     const generate = () => {
-      let inputs = $j('#industry, #city, #state').map(function() {
-         return this.value;
-      });
+      let industry = $j('#industry').val();
+      let city = $j('#city').val();
+      let state = $j('#state').val();
       
-      let data = {
-         'type'     : 'POST',
-         'action'   : 'generate_tag',
-         'function' : inputs
-      };
-
-      jQuery.post(ajaxurl, data, function(response) {
-         console.log(response);
+      $j.ajax({
+         type: 'POST',
+         url: ajaxurl,
+         data: {
+            'action': 'generate_tag',
+            'industry': industry,
+            'city': city,
+            'state': state
+         },
+         success:function(data) {
+            console.log(data);
+         }
       })
     }
 
