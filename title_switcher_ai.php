@@ -61,3 +61,27 @@ function update_table_ai()
 add_action('wp_ajax_update_table', 'update_table_ai'); // for logged in users only
 add_action('wp_ajax_nopriv_update_table', 'update_table_ai'); // for ALL users
 
+require __DIR__ . '/vendor/autoload.php'; // remove this line if you use a PHP Framework.
+
+use Orhanerday\OpenAi\OpenAi;
+
+function generate_tag()
+{
+
+    $open_ai_key = getenv('OPENAI_API_KEY');
+    $open_ai = new OpenAi($open_ai_key);
+
+    $complete = $open_ai->completion([
+        'model' => 'davinci',
+        'prompt' => 'Hello',
+        'temperature' => 0.9,
+        'max_tokens' => 150,
+        'frequency_penalty' => 0,
+        'presence_penalty' => 0.6,
+    ]);
+
+    var_dump($complete);
+}
+
+
+

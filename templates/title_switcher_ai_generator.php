@@ -14,24 +14,24 @@ $title_switcher_ai = $wpdb->prefix . "title_switcher_ai";
 </head>
 <body>
     <div class="container d-flex flex-column align-items-center">
-        <div class="container flex flex-row row w-50">
+        <div class="container flex flex-row row w-50 mt-5">
             <div class="form-group col">
                 <label for="industry">Industry</label>
-                <input  id="industry" class="form-control" placeholder="Enter Industry" type="text">
+                <input  id="industry" class="form-control info" placeholder="Enter Industry" type="text">
             </div>
             <div class="form-group col">
-                <label for="industry">City</label>
-                <input  id="city" class="form-control" placeholder="Enter City" type="text">
+                <label for="city">City</label>
+                <input  id="city" class="form-control info" placeholder="Enter City" type="text">
             </div>
             <div class="form-group col">
                 <label for="state">State</label>
-                <input  id="state" class="form-control" placeholder="Enter State" type="text">
+                <input  id="state" class="form-control info" placeholder="Enter State" type="text">
             </div>
             <div class="form-group col-3 row  align-items-end">
                 <input id="generate" class="btn btn-primary btn-sm dblock" value="Generate Tag" type="button">
             </div>
         </div>
-        <table class="table w-50">
+        <table class="table w-50 mt-5">
             <thead>
                 <tr>
                     <th class="col w-50">Page</th>

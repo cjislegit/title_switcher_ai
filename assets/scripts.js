@@ -2,7 +2,7 @@ var $j = jQuery.noConflict();
 
 $j(document).ready(function() {
 
-    let submit = () => {
+    const submit = () => {
         let newTitles = [];
         let tempTitles = $j('.newTitles');
         delete tempTitles.length;
@@ -10,7 +10,6 @@ $j(document).ready(function() {
         Object.values(tempTitles).forEach(element => {
            newTitles.push([element.id, element.value]);
         });
-        console.log(newTitles);
 
         var data = {
             'type'     : 'POST',
@@ -26,5 +25,22 @@ $j(document).ready(function() {
 
     $j("#submit").click(submit);
 
+    const generate = () => {
+      let inputs = $j('#industry, #city, #state').map(function() {
+         return this.value;
+      });
+      
+      let data = {
+         'type'     : 'POST',
+         'action'   : 'generate_tag',
+         'function' : inputs
+      };
+
+      jQuery.post(ajaxurl, data, function(response) {
+         console.log(response);
+      })
+    }
+
+    $j("#generate").click(generate);
 });
 
