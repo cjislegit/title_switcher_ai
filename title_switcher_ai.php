@@ -67,6 +67,9 @@ use Orhanerday\OpenAi\OpenAi;
 
 function generate_tag()
 {
+    $industry = $_POST['industry'];
+    $city = $_POST['city'];
+    $state = $_POST['state'];
 
     $open_ai_key = '';
     $open_ai = new OpenAi($open_ai_key);
