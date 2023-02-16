@@ -61,10 +61,12 @@ function update_table_ai()
 add_action('wp_ajax_update_table', 'update_table_ai'); // for logged in users only
 add_action('wp_ajax_nopriv_update_table', 'update_table_ai'); // for ALL users
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->safeLoad();
+
 
 require __DIR__ . '/vendor/autoload.php'; // remove this line if you use a PHP Framework.
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->safeLoad();
 
 use Orhanerday\OpenAi\OpenAi;
 
