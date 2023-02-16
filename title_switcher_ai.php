@@ -61,29 +61,42 @@ function update_table_ai()
 add_action('wp_ajax_update_table', 'update_table_ai'); // for logged in users only
 add_action('wp_ajax_nopriv_update_table', 'update_table_ai'); // for ALL users
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->safeLoad();
+
 require __DIR__ . '/vendor/autoload.php'; // remove this line if you use a PHP Framework.
 
 use Orhanerday\OpenAi\OpenAi;
 
 function generate_tag()
 {
+    $pages = [];
     $industry = $_POST['industry'];
     $city = $_POST['city'];
     $state = $_POST['state'];
 
-    $open_ai_key = '';
+    foreach (PUBLISHED_PAGES_AI as $id) {
+        $pages[] = get_the_title($id);
+    }
+
+    $pages = implode(" ",$pages);
+
+    $promt = "Write a $pages titles tags for a $industry in $city $state that are SEO friendly and 60 characters long.";
+
+    $open_ai_key = $_ENV['KEY'];
     $open_ai = new OpenAi($open_ai_key);
 
     $complete = $open_ai->completion([
-        'model' => 'davinci',
-        'prompt' => 'Hello',
+        'model' => 'text-davinci-003',
+        'prompt' => $promt,
         'temperature' => 0.9,
         'max_tokens' => 150,
         'frequency_penalty' => 0,
         'presence_penalty' => 0.6,
     ]);
 
-    echo $complete;
+    $response = json_decode($complete,true)['choices'][0]['text'];
+    echo json_encode($response);
 }
 
 add_action('wp_ajax_generate_tag', 'generate_tag'); // for logged in users only
