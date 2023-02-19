@@ -83,7 +83,7 @@ function generate_tag()
 
     $pages = implode(" ",$pages);
 
-    $promt = "Write a $pages titles tags for a $industry in $city $state that are SEO friendly and 60 characters long.";
+    $promt = "Write a $pages titles tags for a $industry in $city $state that are SEO friendly and 60 characters long. List them as an associative array with the name of the page and return just the php code without anything else.";
 
     $open_ai_key = $_ENV['KEY'];
     $open_ai = new OpenAi($open_ai_key);
@@ -91,7 +91,7 @@ function generate_tag()
     $complete = $open_ai->completion([
         'model' => 'text-davinci-003',
         'prompt' => $promt,
-        'temperature' => 0.9,
+        'temperature' => 0.2,
         'max_tokens' => 150,
         'frequency_penalty' => 0,
         'presence_penalty' => 0.6,
