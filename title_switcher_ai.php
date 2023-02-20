@@ -83,7 +83,7 @@ function generate_tag()
 
     $pages = implode(" ",$pages);
 
-    $promt = "Write a $pages titles tags for a $industry in $city $state that are SEO friendly and 60 characters long. List them as an associative array with the name of the page and return just the php code without anything else.";
+    $promt = "Write $pages titles tags for a $industry in $city $state that are SEO friendly and 60 characters long. Return the title tags in a list and nothing else";
 
     $open_ai_key = $_ENV['KEY'];
     $open_ai = new OpenAi($open_ai_key);
